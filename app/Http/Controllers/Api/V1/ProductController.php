@@ -66,4 +66,8 @@ class ProductController extends Controller
     {
         return $product->delete();
     }
+
+    public function search( $name ) {
+        
+    }
 }
