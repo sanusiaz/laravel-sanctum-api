@@ -24,10 +24,11 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['sometimes', 'max:255', 'string', 'unique:products,name'],
-            'slug' => ['sometimes', 'max:255', 'unique:products,name'],
-            'description' => ['sometimes'],
-            'price' => ['integer', 'sometimes']
+            'name'          => ['sometimes', 'max:255', 'string', 'unique:products,name'],
+            'slug'          => ['sometimes', 'max:255', 'unique:products,name'],
+            'description'   => ['sometimes'],
+            'price'         => ['integer', 'sometimes'],
+            'image_path'    => ['sometimes', 'mimes:png,jpg,jpeg,svg,gif', 'max:5000']
         ];
     }
 }
