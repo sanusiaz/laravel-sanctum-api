@@ -23,13 +23,24 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name'          => ['sometimes', 'max:255', 'string', 'unique:products,name'],
-            'slug'          => ['sometimes', 'max:255', 'unique:products,name'],
-            'description'   => ['sometimes'],
-            'price'         => ['integer', 'sometimes'],
-            'image_path'    => ['sometimes', 'mimes:png,jpg,jpeg,svg,gif', 'max:5000'],
-            'user_id'       => ['sometimes', 'integer']
-        ];
+        if ( request()->method() === 'PUT' ) {
+            // update all request
+            return [
+                'name'          => ['required', 'max:255', 'string', 'unique:products,name'],
+                'slug'          => ['required', 'max:255', 'unique:products,slug'],
+                'description'   => ['required'],
+                'price'         => ['integer', 'required'],
+                'image_path'    => ['mimes:png,jpg,jpeg,svg,gif', 'max:5000', 'nullable'],
+            ];
+        }
+        else {
+            return [
+                'name'          => ['sometimes', 'max:255', 'string'],
+                'slug'          => ['sometimes', 'max:255'],
+                'description'   => ['sometimes'],
+                'price'         => ['integer', 'sometimes'],
+                'image_path'    => ['sometimes', 'mimes:png,jpg,jpeg,svg,gif', 'max:5000'],
+            ];
+        }       
     }
 }
