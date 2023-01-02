@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Product;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
+use App\Http\Requests\Api\V1\StoreProductRequest;
+use App\Http\Requests\Api\V1\UpdateProductRequest;
+use App\Http\Resources\Api\V1\ProductsResource;
+use App\Http\Resources\Api\V1\ProductsCollection;
 
 use App\Http\Controllers\Controller;
 
@@ -17,13 +19,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        return new ProductsCollection(Product::paginate(20));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreProductRequest  $request
+     * @param  \App\Http\Requests\Api\V1\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreProductRequest $request)
@@ -39,13 +41,13 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return new ProductsResource($product);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateProductRequest  $request
+     * @param  \App\Http\Requests\Api\V1\UpdateProductRequest  $request
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */

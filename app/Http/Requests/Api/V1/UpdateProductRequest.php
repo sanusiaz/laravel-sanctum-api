@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['sometimes', 'max:255', 'string', 'unique:products,name'],
+            'slug' => ['sometimes', 'max:255', 'unique:products,name'],
+            'description' => ['sometimes'],
+            'price' => ['integer', 'sometimes']
         ];
     }
 }
