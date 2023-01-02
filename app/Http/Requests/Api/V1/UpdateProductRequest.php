@@ -28,7 +28,8 @@ class UpdateProductRequest extends FormRequest
             'slug'          => ['sometimes', 'max:255', 'unique:products,name'],
             'description'   => ['sometimes'],
             'price'         => ['integer', 'sometimes'],
-            'image_path'    => ['sometimes', 'mimes:png,jpg,jpeg,svg,gif', 'max:5000']
+            'image_path'    => ['sometimes', 'mimes:png,jpg,jpeg,svg,gif', 'max:5000'],
+            'user_id'       => ['sometimes', 'integer']
         ];
     }
 }
