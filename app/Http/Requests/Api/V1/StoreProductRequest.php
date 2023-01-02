@@ -25,6 +25,9 @@ class StoreProductRequest extends FormRequest
     {
         // select random users id
         // this is just for testing purposes for the api to work
+        if ( !request()->has('user_id') ) {
+            $userId = 1;
+        }
 
         return [
             'name'          => ['required', 'max:255', 'string', 'unique:products,name'],

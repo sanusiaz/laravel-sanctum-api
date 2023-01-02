@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Product;
+use App\Models\User;
 use App\Http\Requests\Api\V1\StoreProductRequest;
 use App\Http\Requests\Api\V1\UpdateProductRequest;
 use App\Http\Resources\Api\V1\ProductsResource;
@@ -68,6 +69,6 @@ class ProductController extends Controller
     }
 
     public function search( $name ) {
-        
+        return Product::where('name', $name)->first();
     }
 }

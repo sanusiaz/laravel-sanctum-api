@@ -15,6 +15,6 @@ Route::group([
     Route::apiResource('/products', ProductController::class);
 
     // search route
-    Route::get('/products/search/{name}', ProductController::class)
+    Route::get('/products/search/{name}', [ProductController::class, 'search'])
         ->whereAlpha('name');
 });
