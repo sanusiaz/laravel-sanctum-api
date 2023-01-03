@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
             ->count(2)
             ->create();
 
-        User:::factory()
+        User::factory()
             ->count(5)
             ->create();
     }
