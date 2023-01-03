@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Models\Product;
 use App\Models\User;
-use App\Http\Requests\Api\V1\StoreProductRequest;
-use App\Http\Requests\Api\V1\UpdateProductRequest;
-use App\Http\Resources\Api\V1\ProductsResource;
-use App\Http\Resources\Api\V1\ProductsCollection;
-
+use App\Models\Product;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Filters\Api\V1\ProductFilter;
+use App\Http\Resources\Api\V1\ProductsResource;
+
+use App\Http\Requests\Api\V1\StoreProductRequest;
+
+use App\Http\Resources\Api\V1\ProductsCollection;
+use App\Http\Requests\Api\V1\UpdateProductRequest;
 
 class ProductController extends Controller
 {
@@ -19,9 +22,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new ProductsCollection(Product::paginate(20));
+
+        $productFilter = new ProductFilter();
+        $filteredResults = $productFilter->transform($request);
+
+        return new ProductsCollection(Product::where($filteredResults)->paginate(20));
     }
 
     /**
@@ -43,6 +50,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+       
+
         return new ProductsResource($product);
     }
 
