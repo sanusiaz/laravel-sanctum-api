@@ -14,10 +14,6 @@ use App\Http\Controllers\Controller;
 class ProductController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware(['auth:sanctum'])->only(['store', 'update', 'destroy']);
-    }
     /**
      * Display a listing of the resource.
      *
