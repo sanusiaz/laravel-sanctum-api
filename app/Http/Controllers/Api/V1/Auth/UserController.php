@@ -66,6 +66,6 @@ class UserController extends Controller
 
         return response([
             'message' => 'Invalid Credentials'
-        ], 501);
+        ], 401);
     }
 }
