@@ -24,7 +24,7 @@ class UserController extends Controller
 
         $token = $user->createToken('myapptoken')->plainTextToken;
 
-        return response([
+        return response()->json([
             'data' => $user,
             'token' => $token
         ], 201);
@@ -35,7 +35,7 @@ class UserController extends Controller
     {
         auth()->user()->tokens()->delete();
 
-        return response([
+        return response()->json([
             'message' => 'logout successful'
         ], 201);
     }
@@ -55,7 +55,7 @@ class UserController extends Controller
                 // create new token 
                 $token = $user->createToken('myapptoken')->plainTextToken;
 
-                return response([
+                return response()->json([
                     'data' => [
                         'email' => $request->email,
                         'token' => $token
@@ -64,7 +64,7 @@ class UserController extends Controller
             }
         }
 
-        return response([
+        return response()->json([
             'message' => 'Invalid Credentials'
         ], 401);
     }

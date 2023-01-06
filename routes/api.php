@@ -21,7 +21,7 @@ Route::group([
         ->name('products.store');
     Route::middleware(['auth:sanctum'])->post('/products/{product}', [ProductController::class, 'update'])
         ->name('products.update');
-        Route::middleware(['auth:sanctum'])->delete('/products/{products}', [ProductController::class, 'destroy'])
+    Route::middleware(['auth:sanctum'])->delete('/products/{products}', [ProductController::class, 'destroy'])
         ->name('products.destroy');
         
     
@@ -31,8 +31,10 @@ Route::group([
 
     Route::apiResource('/products', ProductController::class);
 
+    Route::apiResource('/customers', CustomerController::class);
    
 });
+
 
 
 Route::group([

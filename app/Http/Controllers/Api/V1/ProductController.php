@@ -24,11 +24,10 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-
         $productFilter = new ProductFilter();
         $filteredResults = $productFilter->transform($request);
 
-        return new ProductsCollection(Product::where($filteredResults)->paginate(20));
+        return new ProductsCollection(Product::where($filteredResults)->paginate(20)->appends($request->query()));
     }
 
     /**
@@ -50,8 +49,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-       
-
         return new ProductsResource($product);
     }
 
