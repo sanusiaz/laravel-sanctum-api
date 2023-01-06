@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Auth\UserController;
+use App\Http\Controllers\Api\V1\InvoiceController;
 use App\Http\Controllers\Api\V1\ProductController;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
@@ -32,6 +33,7 @@ Route::group([
     Route::apiResource('/products', ProductController::class);
 
     Route::apiResource('/customers', CustomerController::class);
+    Route::apiResource('/invoices', InvoiceController::class);
    
 });
 

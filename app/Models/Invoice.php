@@ -16,7 +16,8 @@ class Invoice extends Model
         'quantity',
         'amount',
         'billed_date',
-        'payed_date'
+        'payed_date',
+        'invoice_ref'
     ];
 
 

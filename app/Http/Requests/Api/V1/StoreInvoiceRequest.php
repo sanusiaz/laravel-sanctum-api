@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreInvoiceRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreInvoiceRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,20 @@ class StoreInvoiceRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'customer_id'  => ['required', 'integer'],
+            'status'        => ['required', 'string', Rule::in(['B', 'P', 'V', 'b', 'p', 'v'])],
+            'quantity'      => ['required', 'integer'],
+            'amount'        => ['required', 'numeric'],   
+            'billedDate'   => ['required', 'date'],
+            'payedDate'    => ['required', 'date']
         ];
+    }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'billed_date' => $this->billedDate,
+            'payed_date' => $this->payedDate
+        ]);
     }
 }
