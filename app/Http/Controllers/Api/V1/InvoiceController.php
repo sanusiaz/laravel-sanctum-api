@@ -29,7 +29,7 @@ class InvoiceController extends Controller
     {
         return response()->json([
             'data' => new InvoiceResource($invoice)
-        ]);
+        ], 200);
     }
 
     public function store ( StoreInvoiceRequest $request )
@@ -50,7 +50,7 @@ class InvoiceController extends Controller
         return response()->json([
             'data' => $invoice,
             'message' => 'Invoice Has Been Created Successfully'
-        ], 200);
+        ], 201);
     }
 
     public function update( UpdateInvoiceRequest $request, Invoice $invoice )
@@ -64,7 +64,7 @@ class InvoiceController extends Controller
             'data' => $invoice,
             'message' => 'Invoice Has been updated Successfully',
             'status' => 'success'
-        ], 200);
+        ], 201);
         
     }
 
@@ -75,6 +75,6 @@ class InvoiceController extends Controller
 
         return response()->json([
             'message' => 'Invoice Has Been Deleted Successfully'
-        ], 201);
+        ], 200);
     }
 }
