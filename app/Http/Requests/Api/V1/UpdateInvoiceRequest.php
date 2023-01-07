@@ -47,4 +47,20 @@ class UpdateInvoiceRequest extends FormRequest
             'payedDate'    => ['sometimes', 'required', 'date_format:Y-m-d H:i:s']
         ];
     }
+
+
+    public function prepareForValidation()
+    {
+
+        $arr = [];
+
+        foreach( $this->toArray() as $obj ) {
+            $obj['billed_date']  = $this->billedDate ?? null;
+            $obj['payed_date']  = $this->payedDate ?? null;
+        }
+        $this->merge([
+            'billed_date' => $this->billedDate ?? null,
+            'payed_date' => $this->payedDate ?? null
+        ]);
+    }
 }
