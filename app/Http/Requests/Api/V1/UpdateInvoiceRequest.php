@@ -32,8 +32,8 @@ class UpdateInvoiceRequest extends FormRequest
                 'status'        => ['required', 'string', Rule::in(['B', 'P', 'V', 'b', 'p', 'v'])],
                 'quantity'      => ['required', 'integer'],
                 'amount'        => ['required', 'numeric'],   
-                'billedDate'   => ['required', 'date'],
-                'payedDate'    => ['required', 'date']
+                'billedDate'   => ['required', 'date_format:Y-m-d H:i:s'],
+                'payedDate'    => ['required', 'date_format:Y-m-d H:i:s']
             ];
         }
 
@@ -43,8 +43,8 @@ class UpdateInvoiceRequest extends FormRequest
             'status'        => ['sometimes', 'required', 'string', Rule::in(['B', 'P', 'V', 'b', 'p', 'v'])],
             'quantity'      => ['sometimes', 'required', 'integer'],
             'amount'        => ['sometimes', 'required', 'numeric'],   
-            'billedDate'   => ['sometimes', 'required', 'date'],
-            'payedDate'    => ['sometimes', 'required', 'date']
+            'billedDate'   => ['sometimes', 'required', 'date_format:Y-m-d H:i:s'],
+            'payedDate'    => ['sometimes', 'required', 'date_format:Y-m-d H:i:s']
         ];
     }
 }

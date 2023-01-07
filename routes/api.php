@@ -5,7 +5,6 @@ use App\Http\Controllers\Api\V1\CustomerController;
 use App\Http\Controllers\Api\V1\FallbackController;
 use App\Http\Controllers\Api\V1\InvoiceController;
 use App\Http\Controllers\Api\V1\ProductController;
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -69,3 +68,6 @@ Route::group([
      Route::get('/products/search/{name}', [ProductController::class, 'search'])
      ->whereAlphaNumeric('name');
 });
+
+// bulk insert invoices 
+Route::post('/invoices/bulk/store', [InvoiceController::class, 'bulkStore']);
